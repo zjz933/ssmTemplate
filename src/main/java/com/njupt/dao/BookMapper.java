@@ -1,17 +1,11 @@
 package com.njupt.dao;
 
-import com.njupt.entity.Book;
+import com.njupt.entity.BookEntity;
+import org.apache.ibatis.annotations.Param;
 
 public interface BookMapper {
-    int deleteByPrimaryKey(Long bookId);
 
-    int insert(Book record);
+    BookEntity loadBookById(@Param("id") long id);
 
-    int insertSelective(Book record);
-
-    Book selectByPrimaryKey(Long bookId);
-
-    int updateByPrimaryKeySelective(Book record);
-
-    int updateByPrimaryKey(Book record);
+    int addBook(@Param("entity") BookEntity entity);
 }

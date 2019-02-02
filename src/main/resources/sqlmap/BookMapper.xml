@@ -1,71 +1,30 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.njupt.dao.BookMapper" >
-  <resultMap id="BaseResultMap" type="com.njupt.entity.Book" >
-    <id column="book_id" property="bookId" jdbcType="BIGINT" />
-    <result column="name" property="name" jdbcType="VARCHAR" />
-    <result column="number" property="number" jdbcType="INTEGER" />
-  </resultMap>
-  <sql id="Base_Column_List" >
-    book_id, name, number
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
-    select 
-    <include refid="Base_Column_List" />
-    from book
-    where book_id = #{bookId,jdbcType=BIGINT}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
-    delete from book
-    where book_id = #{bookId,jdbcType=BIGINT}
-  </delete>
-  <insert id="insert" parameterType="com.njupt.entity.Book" >
-    insert into book (book_id, name, number
-      )
-    values (#{bookId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{number,jdbcType=INTEGER}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.njupt.entity.Book" >
-    insert into book
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="bookId != null" >
-        book_id,
-      </if>
-      <if test="name != null" >
-        name,
-      </if>
-      <if test="number != null" >
-        number,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="bookId != null" >
-        #{bookId,jdbcType=BIGINT},
-      </if>
-      <if test="name != null" >
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="number != null" >
-        #{number,jdbcType=INTEGER},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.njupt.entity.Book" >
-    update book
-    <set >
-      <if test="name != null" >
-        name = #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="number != null" >
-        number = #{number,jdbcType=INTEGER},
-      </if>
-    </set>
-    where book_id = #{bookId,jdbcType=BIGINT}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.njupt.entity.Book" >
-    update book
-    set name = #{name,jdbcType=VARCHAR},
-      number = #{number,jdbcType=INTEGER}
-    where book_id = #{bookId,jdbcType=BIGINT}
-  </update>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.njupt.dao.BookMapper">
+
+    <resultMap id="BookResult" type="com.njupt.entity.BookEntity">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="number" property="number"/>
+    </resultMap>
+
+    <sql id="AllFields">
+    id, name, number
+    </sql>
+
+    <insert id="addBook" parameterType="BookEntity">
+        INSERT INTO book(name, number)
+        VALUES (
+        #{entity.name},
+        #{entity.number}
+        )
+    </insert>
+
+    <select id="loadBookById" resultType="BookEntity">
+        SELECT
+        <include refid="AllFields"/>
+        FROM book
+        WHERE id = #{id}
+    </select>
+
 </mapper>

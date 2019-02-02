@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.6.24)
 # Database: test
-# Generation Time: 2019-02-02 04:54:39 +0000
+# Generation Time: 2019-02-02 07:18:29 +0000
 # ************************************************************
 
 
@@ -26,21 +26,22 @@
 DROP TABLE IF EXISTS `book`;
 
 CREATE TABLE `book` (
-  `book_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '图书ID',
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '图书ID',
   `name` varchar(100) NOT NULL COMMENT '图书名称',
   `number` int(11) NOT NULL COMMENT '馆藏数量',
-  PRIMARY KEY (`book_id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='图书表';
 
 LOCK TABLES `book` WRITE;
 /*!40000 ALTER TABLE `book` DISABLE KEYS */;
 
-INSERT INTO `book` (`book_id`, `name`, `number`)
+INSERT INTO `book` (`id`, `name`, `number`)
 VALUES
 	(1000,'Java程序设计',10),
 	(1001,'数据结构',10),
 	(1002,'设计模式',10),
-	(1003,'编译原理',10);
+	(1003,'编译原理',10),
+	(1004,'测试书籍',10);
 
 /*!40000 ALTER TABLE `book` ENABLE KEYS */;
 UNLOCK TABLES;

@@ -1,18 +1,22 @@
-package com.njupt.entity;
+package com.njupt.controller.vo;
 
-public class Book {
-    private Long bookId;
+/**
+ * Created by zhaojunzhi on 2019/2/2.
+ */
+public class BookVo {
+
+    private long id;
 
     private String name;
 
-    private Integer number;
+    private int number;
 
-    public Long getBookId() {
-        return bookId;
+    public long getBookId() {
+        return id;
     }
 
     public void setBookId(Long bookId) {
-        this.bookId = bookId;
+        this.id = bookId;
     }
 
     public String getName() {
@@ -23,7 +27,7 @@ public class Book {
         this.name = name;
     }
 
-    public Integer getNumber() {
+    public int getNumber() {
         return number;
     }
 
